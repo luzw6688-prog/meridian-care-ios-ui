@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meridian Care iOS App UI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="ios-stage">
+      <section class="iphone" aria-label="Meridian Care iOS App">
+        <div class="dynamic-island"></div>
+        <div class="status-bar">
+          <span>9:41</span>
+          <div class="status-icons">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+        </div>
+
+        <section class="screen active" id="journey">
+          <header class="ios-nav">
+            <div>
+              <span class="nav-caption">AI Care Plan</span>
+              <h1>Today</h1>
+            </div>
+            <button class="avatar-button" aria-label="Profile">M</button>
+          </header>
+
+          <article class="journey-card">
+            <div class="journey-top">
+              <span>Day 12</span>
+              <strong>AI tuned</strong>
+            </div>
+            <h2>Neck Relief Plan</h2>
+            <p>Next AI report in 2 days</p>
+            <div class="journey-progress">
+              <span style="width: 86%"></span>
+            </div>
+          </article>
+
+          <section class="ai-flow">
+            <article>
+              <span>1</span>
+              <strong>Feedback</strong>
+            </article>
+            <article>
+              <span>2</span>
+              <strong>AI Analysis</strong>
+            </article>
+            <article>
+              <span>3</span>
+              <strong>Plan</strong>
+            </article>
+          </section>
+
+          <section class="content-block">
+            <div class="block-title">
+              <h2>Daily Tasks</h2>
+              <span>2/3</span>
+            </div>
+            <button class="ios-list-row completed">
+              <span class="check-dot"></span>
+              <div>
+                <strong>Neck meridian massage</strong>
+                <p>8 min · Done</p>
+              </div>
+            </button>
+            <button class="ios-list-row">
+              <span class="check-dot"></span>
+              <div>
+                <strong>Sleep meditation</strong>
+                <p>5 min · 22:00</p>
+              </div>
+            </button>
+            <button class="ios-primary">Start Next</button>
+          </section>
+
+          <section class="metric-grid">
+            <article>
+              <span>Streak</span>
+              <strong>5d</strong>
+            </article>
+            <article>
+              <span>This week</span>
+              <strong>48m</strong>
+            </article>
+          </section>
+        </section>
+
+        <section class="screen" id="massage">
+          <header class="ios-nav">
+            <div>
+              <span class="nav-caption">Self-care</span>
+              <h1>Massage</h1>
+            </div>
+          </header>
+
+          <section class="body-selector">
+            <button class="body-pill active">All</button>
+            <button class="body-pill">Sleep</button>
+            <button class="body-pill">Desk</button>
+            <button class="body-pill">Calm</button>
+          </section>
+
+          <section class="body-grid">
+            <button class="body-card">
+              <span>H</span>
+              <strong>Hands</strong>
+              <p>Desk break</p>
+            </button>
+            <button class="body-card featured">
+              <span>N</span>
+              <strong>Neck</strong>
+              <p>For sitting</p>
+            </button>
+            <button class="body-card">
+              <span>HD</span>
+              <strong>Head</strong>
+              <p>Ease stress</p>
+            </button>
+            <button class="body-card">
+              <span>L</span>
+              <strong>Legs</strong>
+              <p>After walking</p>
+            </button>
+            <button class="body-card">
+              <span>F</span>
+              <strong>Feet</strong>
+              <p>Before sleep</p>
+            </button>
+            <button class="body-card">
+              <span>A</span>
+              <strong>Abdomen</strong>
+              <p>Gentle care</p>
+            </button>
+          </section>
+
+          <article class="course-row">
+            <div>
+              <span>Recommended</span>
+              <strong>Neck Relief</strong>
+              <p>8 min · 6 steps</p>
+            </div>
+            <button>Start</button>
+          </article>
+        </section>
+
+        <section class="screen" id="checkin">
+          <header class="ios-nav">
+            <div>
+              <span class="nav-caption">Body feedback</span>
+              <h1>Check-in</h1>
+            </div>
+          </header>
+
+          <section class="week-strip">
+            <span>M</span>
+            <span>T</span>
+            <span class="done">W</span>
+            <span class="done">T</span>
+            <span class="current">F</span>
+            <span>S</span>
+            <span>S</span>
+          </section>
+
+          <article class="rating-card">
+            <span>Before practice</span>
+            <h2>Neck tension?</h2>
+            <div class="score-row">
+              <button>1</button>
+              <button>2</button>
+              <button class="selected">3</button>
+              <button>4</button>
+              <button>5</button>
+            </div>
+          </article>
+
+          <section class="feedback-grid">
+            <button class="feedback-chip active">Stiff neck</button>
+            <button class="feedback-chip">Poor sleep</button>
+            <button class="feedback-chip">Low energy</button>
+            <button class="feedback-chip">Stress</button>
+          </section>
+
+          <section class="habit-cards">
+            <button class="habit-card active">
+              <strong>Massage</strong>
+              <span>8 min</span>
+            </button>
+            <button class="habit-card">
+              <strong>Meditate</strong>
+              <span>5 min</span>
+            </button>
+            <button class="habit-card">
+              <strong>Breathe</strong>
+              <span>3 min</span>
+            </button>
+          </section>
+
+          <button class="ios-primary fixed-action">Submit to AI</button>
+        </section>
+
+        <section class="screen" id="report">
+          <header class="ios-nav">
+            <div>
+              <span class="nav-caption">AI insight</span>
+              <h1>Report</h1>
+            </div>
+          </header>
+
+          <article class="report-card">
+            <span>14-day summary</span>
+            <h2>11 sessions done</h2>
+            <p>96 min · 5-day streak</p>
+          </article>
+
+          <section class="content-block">
+            <div class="block-title">
+              <h2>Body trend</h2>
+              <span>Neck</span>
+            </div>
+            <div class="bar-chart">
+              <i style="height: 72%"></i>
+              <i style="height: 60%"></i>
+              <i style="height: 50%"></i>
+              <i style="height: 42%"></i>
+              <i style="height: 35%"></i>
+            </div>
+            <p class="report-note">AI found lower neck tension and steadier sleep feedback.</p>
+          </section>
+
+          <article class="suggestion-card">
+            <span>Next plan</span>
+            <strong>Keep neck care. Add bedtime foot massage.</strong>
+            <button>Build Plan</button>
+          </article>
+        </section>
+
+        <section class="screen" id="me">
+          <header class="ios-nav">
+            <div>
+              <span class="nav-caption">Account</span>
+              <h1>Me</h1>
+            </div>
+          </header>
+
+          <article class="member-card">
+            <span>Annual Member</span>
+            <h2>AI care unlocked</h2>
+            <p>Reports, plans, and massage library</p>
+          </article>
+
+          <section class="settings-list">
+            <button><span>Goals</span><strong>Neck, sleep</strong></button>
+            <button><span>Saved</span><strong>12</strong></button>
+            <button><span>Reminder</span><strong>22:00</strong></button>
+            <button><span>Reports</span><strong>3</strong></button>
+          </section>
+        </section>
+
+        <nav class="ios-tabbar" aria-label="主导航">
+          <button class="active" data-target="journey">
+            <span class="tab-icon"></span>
+            Today
+          </button>
+          <button data-target="massage">
+            <span class="tab-icon"></span>
+            Care
+          </button>
+          <button data-target="checkin">
+            <span class="tab-icon"></span>
+            Check
+          </button>
+          <button data-target="report">
+            <span class="tab-icon"></span>
+            Report
+          </button>
+          <button data-target="me">
+            <span class="tab-icon"></span>
+            Me
+          </button>
+        </nav>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
