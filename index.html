@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meridian Care iOS App UI</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Meridian Care MVP</title>
+    <link rel="stylesheet" href="styles.css?v=20260626-treefit" />
   </head>
   <body>
     <main class="ios-stage">
-      <section class="iphone" aria-label="Meridian Care iOS App">
+      <section class="iphone onboarding-mode" aria-label="Meridian Care MVP">
         <div class="dynamic-island"></div>
         <div class="status-bar">
           <span>9:41</span>
@@ -19,272 +19,859 @@
           </div>
         </div>
 
-        <section class="screen active" id="journey">
-          <header class="ios-nav">
+        <section class="screen active" id="login">
+          <div class="center-screen">
+            <div class="brand-mark">M</div>
+            <span class="nav-caption">AI Meridian Care</span>
+            <h1>Personalized massage care in minutes</h1>
+            <p>Get a simple daily self-massage plan based on your goal, body focus, and routine.</p>
+            <button class="apple-button" data-target="tongue-care">Sign in with Apple</button>
+            <small>Scan your tongue first. AI will create a massage plan from your wellness signal.</small>
+          </div>
+        </section>
+
+        <section class="screen tongue-care-screen" id="tongue-care">
+          <header class="tongue-care-header">
             <div>
-              <span class="nav-caption">AI Care Plan</span>
-              <h1>Today</h1>
+              <span>AI wellness scan</span>
+              <h1>Tongue Scan</h1>
             </div>
-            <button class="avatar-button" aria-label="Profile">M</button>
+            <button data-target="plan-step-1">Set by Questions</button>
           </header>
 
-          <article class="journey-card">
-            <div class="journey-top">
-              <span>Day 12</span>
-              <strong>AI tuned</strong>
+          <p class="tongue-care-guide">Align your tongue inside the guide. AI will scan it and build a simple massage plan.</p>
+
+          <section class="tongue-camera-card" aria-live="polite">
+            <div class="tongue-camera-placeholder">
+              <span class="tongue-camera-status" data-tongue-status>Camera ready</span>
+              <div class="tongue-outline" aria-hidden="true"></div>
+              <p class="tongue-permission-message">Camera access is required before taking a photo.</p>
+              <button class="tongue-permission-retry" data-tongue-permission-retry>Allow Camera Access</button>
             </div>
-            <h2>Neck Relief Plan</h2>
-            <p>Next AI report in 2 days</p>
-            <div class="journey-progress">
-              <span style="width: 86%"></span>
+            <div class="tongue-scan-layer" aria-hidden="true">
+              <span></span>
+              <strong>AI is scanning your photo and creating your wellness plan</strong>
             </div>
+          </section>
+
+          <button class="tongue-shutter" data-tongue-capture aria-label="Capture photo">
+            <span></span>
+          </button>
+          <strong class="tongue-shutter-label" data-tongue-capture-label>Capture</strong>
+
+          <section class="ios-permission tongue-permission-modal" data-tongue-permission-modal>
+            <article>
+              <h2>“Meridian Care” Would Like to Access the Camera</h2>
+              <p>Camera access is used to scan your tongue photo and create your wellness massage plan.</p>
+              <button data-tongue-permission-allow>Allow</button>
+              <button data-tongue-permission-deny>Don’t Allow</button>
+            </article>
+          </section>
+        </section>
+
+        <section class="screen tongue-report-screen" id="tongue-report">
+          <header class="ios-nav plan-nav">
+            <button class="top-action" data-back>Back</button>
+            <div>
+              <span class="nav-caption">AI Scan</span>
+              <h1>Your wellness plan is ready</h1>
+            </div>
+          </header>
+
+          <article class="tongue-report-hero">
+            <span>Scan result</span>
+            <h2>Mild dryness detected</h2>
+            <p>AI recommends a calming acupressure routine for moisture balance and daily relaxation.</p>
           </article>
 
-          <section class="ai-flow">
+          <section class="tongue-report-list">
             <article>
-              <span>1</span>
-              <strong>Feedback</strong>
+              <b>Focus</b>
+              <p>Relaxation · circulation support</p>
             </article>
             <article>
-              <span>2</span>
-              <strong>AI Analysis</strong>
+              <b>Plan preview</b>
+              <p>Yintang · Hegu · Shenmen</p>
             </article>
-            <article>
-              <span>3</span>
-              <strong>Plan</strong>
+          </section>
+
+          <button class="ios-primary bottom-action" data-tongue-report-cta>Start Now</button>
+        </section>
+
+        <section class="screen" id="subscribe">
+          <header class="compact-nav">
+            <button class="text-button" data-close-paywall>Close</button>
+          </header>
+
+          <article class="paywall-hero">
+            <span>Membership</span>
+            <h1>Get your AI massage plan</h1>
+            <p>Subscribe to generate your plan and unlock daily guided massage.</p>
+          </article>
+
+          <section class="benefit-list">
+            <article class="benefit-combined">
+              <div>
+                <strong><i class="benefit-icon plan"></i>Personalized massage plan</strong>
+                <p>Build a daily routine around your goal, time, and body focus.</p>
+              </div>
+              <div>
+                <strong><i class="benefit-icon guide"></i>Guided meridian massage</strong>
+                <p>Follow guided demos designed for self-care at home.</p>
+              </div>
+              <div>
+                <strong><i class="benefit-icon progress"></i>Progress insights</strong>
+                <p>Track your routine, streak, and weekly progress in one place.</p>
+              </div>
             </article>
+          </section>
+
+          <section class="plan-options">
+            <button class="plan-option" data-plan-option="monthly">
+              <span>Monthly</span>
+              <strong>$9.90/month</strong>
+            </button>
+            <button class="plan-option selected" data-plan-option="annual">
+              <span>Annual</span>
+              <div class="price-stack">
+                <strong>$4.16/month</strong>
+                <small>$49.90 billed yearly</small>
+              </div>
+              <em>3-day free trial</em>
+            </button>
+          </section>
+
+          <p class="fine-print" data-plan-note>Annual plan includes a 3-day free trial, then renews automatically.</p>
+          <button class="ios-primary" data-mode="subscribed" data-target="plan-result" data-subscribe-cta>Start 3-day free trial</button>
+          <div class="legal-links paywall-links">
+            <button>Restore Purchase</button>
+            <span>·</span>
+            <button>Terms</button>
+            <span>·</span>
+            <button>Privacy Policy</button>
+          </div>
+        </section>
+
+        <section class="screen" id="plan-step-1">
+          <header class="ios-nav plan-nav">
+            <button class="top-action" data-back>Back</button>
+            <div>
+              <h1>What would you like to improve most?</h1>
+            </div>
+          </header>
+
+          <article class="rating-card">
+            <h2>Choose one primary goal</h2>
+          </article>
+
+          <section class="feedback-grid">
+            <button class="feedback-chip active" data-purpose="sleep">🌙 Better Sleep</button>
+            <button class="feedback-chip" data-purpose="fatigue">⚡ More Energy</button>
+            <button class="feedback-chip" data-purpose="stress">🧘 Less Stress</button>
+            <button class="feedback-chip" data-purpose="neck">💆 Neck & Shoulder Relief</button>
+            <button class="feedback-chip" data-purpose="stomach">🌿 Better Digestion</button>
+            <button class="feedback-chip" data-purpose="liver">🩸 Improve Circulation</button>
+            <button class="feedback-chip" data-purpose="eye">👁 Eye Care</button>
+          </section>
+
+          <button class="ios-primary bottom-action" data-target="plan-step-2">Next</button>
+          <p class="plan-footer">Plan Setup · 1/3</p>
+        </section>
+
+        <section class="screen" id="plan-step-2">
+          <header class="ios-nav plan-nav">
+            <button class="top-action" data-back>Back</button>
+            <div>
+              <h1>Current Status</h1>
+            </div>
+          </header>
+
+          <article class="rating-card">
+            <h2 data-status-title>How was your sleep over the past 7 days?</h2>
+            <p>These answers help AI tune your routine.</p>
+          </article>
+
+          <section class="status-grid" data-status-options>
+            <button class="active">Restless most nights</button>
+            <button>Light sleep</button>
+            <button>Mostly steady</button>
+          </section>
+
+          <button class="ios-primary bottom-action" data-target="plan-step-3">Next</button>
+          <p class="plan-footer">Plan Setup · 2/3</p>
+        </section>
+
+        <section class="screen" id="plan-step-3">
+          <header class="ios-nav plan-nav">
+            <button class="top-action" data-back>Back</button>
+            <div>
+              <h1>Wellness Settings</h1>
+            </div>
+          </header>
+
+          <section class="selected-focus">
+            <span>Wellness Goal</span>
+            <strong data-focus-title>🌙 Better Sleep</strong>
+            <p data-focus-copy>Gentle head and neck release for evening relaxation.</p>
+            <div class="massage-suggestion">
+              <span>Suggested massage area</span>
+              <strong data-massage-target>Head & Neck</strong>
+            </div>
           </section>
 
           <section class="content-block">
             <div class="block-title">
-              <h2>Daily Tasks</h2>
-              <span>2/3</span>
+              <h2>Daily time</h2>
+              <span>Default 5 minutes</span>
             </div>
-            <button class="ios-list-row completed">
-              <span class="check-dot"></span>
-              <div>
-                <strong>Neck meridian massage</strong>
-                <p>8 min · Done</p>
-              </div>
-            </button>
-            <button class="ios-list-row">
-              <span class="check-dot"></span>
-              <div>
-                <strong>Sleep meditation</strong>
-                <p>5 min · 22:00</p>
-              </div>
-            </button>
-            <button class="ios-primary">Start Next</button>
+            <div class="time-options">
+              <button>3 min</button>
+              <button class="selected">5 min</button>
+              <button>10 min</button>
+            </div>
           </section>
 
-          <section class="metric-grid">
+          <button class="ios-primary bottom-action" data-target="ai-generating">Generate plan</button>
+          <p class="plan-footer">Plan Setup · 3/3</p>
+        </section>
+
+        <section class="screen" id="ai-generating" aria-live="polite">
+          <div class="ai-generating-screen">
+            <div class="ai-orbit" aria-hidden="true">
+              <span></span>
+              <i></i>
+              <b></b>
+            </div>
+            <h1>AI is creating your personalized wellness check-in plan</h1>
+            <p>Analyzing your goal, current status, and daily time.</p>
+          </div>
+        </section>
+
+        <section class="screen" id="plan-result">
+          <header class="ios-nav">
+            <div>
+              <span class="nav-caption">AI Generated</span>
+              <h1>Today’s Plan</h1>
+            </div>
+          </header>
+
+          <article class="hero-card">
+            <span>Meridian Massage Plan</span>
+            <h2 data-result-plan-title>Better Sleep</h2>
+            <p data-result-plan-copy>Guided meridian points for your daily self-massage routine.</p>
+          </article>
+
+          <section class="dual-preview">
             <article>
-              <span>Streak</span>
-              <strong>5d</strong>
+              <span>Today</span>
+              <strong data-result-routine-title>Head & Neck Meridian Massage</strong>
+              <p data-result-routine-copy>4 guided steps</p>
             </article>
             <article>
-              <span>This week</span>
-              <strong>48m</strong>
+              <span>Focus</span>
+              <strong data-result-focus-area>Head & Neck</strong>
+              <p>AI suggested areas</p>
+            </article>
+          </section>
+
+          <button class="ios-primary bottom-action" data-open-notification>Start using</button>
+
+          <section class="ios-permission notification-permission" data-notification-modal>
+            <article>
+              <h2>“Meridian Care” Would Like to Send You Notifications</h2>
+              <p>Notifications may include daily massage reminders and plan progress updates.</p>
+              <button data-notification-allow>Allow</button>
+              <button data-notification-later>Set Up Later</button>
             </article>
           </section>
         </section>
 
-        <section class="screen" id="massage">
-          <header class="ios-nav">
-            <div>
-              <span class="nav-caption">Self-care</span>
-              <h1>Massage</h1>
-            </div>
-          </header>
+        <section class="screen" id="today">
+          <article class="locked-card unsubscribed-only">
+            <span>Not subscribed</span>
+            <h2>Subscribe to start daily check-ins</h2>
+            <p>Your plan is ready. Subscribe to unlock guided massage and begin today’s check-in.</p>
+            <button class="ios-primary" data-target="subscribe">Subscribe now</button>
+            <button class="ghost-button" data-target="tongue-care">Retune plan</button>
+          </article>
 
-          <section class="body-selector">
-            <button class="body-pill active">All</button>
-            <button class="body-pill">Sleep</button>
-            <button class="body-pill">Desk</button>
-            <button class="body-pill">Calm</button>
+          <article class="home-hero subscribed-only">
+            <div class="home-welcome">
+              <button class="profile-chip" aria-label="Profile" data-profile-open>
+                <span>☺</span>
+                <strong><em>Welcome</em>Kevin</strong>
+                <i>⌄</i>
+              </button>
+            </div>
+
+            <div class="home-plan-intro">
+              <span>Your Wellness Plan</span>
+              <h1 data-home-plan-title>Better Sleep</h1>
+            </div>
+
+            <div class="home-illustration" aria-label="Better Sleep illustration">
+              <img class="wellness-figure" src="assets/better-sleep-hero.svg" alt="Better Sleep wellness illustration">
+            </div>
+
+            <div class="home-action-card">
+              <div class="home-action-meta">
+                <span>Today</span>
+                <span data-home-routine-time>5 minutes</span>
+              </div>
+              <div>
+                <h2 data-home-routine-title>Head & Neck Meridian Massage</h2>
+                <p data-home-routine-copy>Designed to support a calmer evening rhythm.</p>
+              </div>
+              <button class="home-checkin-button" data-start-routine data-today-plan-action>Check In</button>
+              <button class="home-history-strip" data-target="checkin-history" aria-label="View check-in history">
+                <span>Jun 8 – 14</span>
+                <strong data-home-plan-copy>0 check-ins ›</strong>
+              </button>
+              <div class="home-week-dots" aria-label="Weekly check-in progress">
+                <span data-home-earlier-progress>M</span>
+                <span>T</span>
+                <span class="soft" data-home-today-progress>W</span>
+                <span>T</span>
+                <span>F</span>
+                <span>S</span>
+                <span>S</span>
+              </div>
+              <article class="growth-card" data-target="milestone-detail" role="button" tabindex="0" aria-label="View milestone details">
+                <div class="growth-copy">
+                  <span data-growth-kicker>Wellness Journey</span>
+                  <h2 data-growth-title>Your Wellness Tree</h2>
+                  <p data-growth-copy>Every wellness session helps your tree grow.</p>
+                  <div class="journey-mini-progress" aria-label="Wellness Journey progress">
+                    <i data-growth-progress></i>
+                  </div>
+                  <small data-growth-day>0 / 100 Days</small>
+                </div>
+                <strong class="growth-link-label">Milestones</strong>
+                <div class="sapling-stage stage-sapling" data-growth-stage aria-label="Wellness sapling growth">
+                  <span class="soil"></span>
+                  <span class="stem"></span>
+                  <span class="leaf leaf-left"></span>
+                  <span class="leaf leaf-right"></span>
+                  <span class="crown"></span>
+                  <span class="fruit fruit-one locked" aria-hidden="true"></span>
+                  <span class="fruit fruit-two locked" aria-hidden="true"></span>
+                </div>
+              </article>
+            </div>
+          </article>
+
+          <section class="task-detail subscribed-only routine-guide-shell">
+            <article class="practice-card routine-guide task-panel active" data-task-panel="massage" data-routine-guide>
+              <header class="guidance-header">
+                <button class="guidance-icon-button" data-exit-routine aria-label="Back">‹</button>
+                <div class="guidance-title-progress">
+                  <strong data-routine-guide-title>Head & Neck Meridian Massage</strong>
+                  <div class="guidance-progress" data-guidance-progress aria-label="Routine progress">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <button class="guidance-icon-button" data-exit-routine aria-label="Close">×</button>
+              </header>
+
+              <section class="guidance-instruction" aria-live="polite">
+                <p data-step-copy>Place your index or middle finger on the midpoint between your eyebrows. Apply gentle pressure and massage in small circular motions while breathing slowly and deeply.</p>
+              </section>
+
+              <section class="guidance-illustration" aria-label="Massage point illustration">
+                <img src="assets/ap-head-exhn3.svg" alt="Head meridian massage illustration">
+                <span class="guidance-point point-1 active" data-point="1"></span>
+                <span class="guidance-point point-2" data-point="2"></span>
+                <span class="guidance-point point-3" data-point="3"></span>
+                <span class="guidance-point point-4" data-point="4"></span>
+                <span class="guidance-point point-5" data-point="5"></span>
+                <span class="guidance-illustration-blur" aria-hidden="true"></span>
+              </section>
+
+              <div class="guidance-bottom">
+                <button class="mini-timer" data-timer-toggle aria-label="Pause timer">
+                  <i aria-hidden="true"></i>
+                  <strong data-step-time>01:00</strong>
+                  <span data-step-count>Step 1 / 4</span>
+                </button>
+                <button class="line-check-button" data-complete-routine>Next</button>
+              </div>
+
+              <div class="step-pills step-source" aria-label="Massage steps">
+                <button class="active" data-meridian-step="1" data-seconds="60" data-copy="Press the thumb base with slow circles.">Thumb base</button>
+                <button data-meridian-step="2" data-seconds="90" data-copy="Glide along the center palm line.">Palm line</button>
+                <button data-meridian-step="3" data-seconds="60" data-copy="Hold the wrist point and breathe slowly.">Wrist point</button>
+                <button data-meridian-step="4" data-seconds="90" data-copy="Massage each fingertip with light pressure.">Fingertips</button>
+                <button data-meridian-step="5" data-seconds="60" data-copy="Finish with steady, gentle pressure.">Finish point</button>
+              </div>
+            </article>
           </section>
 
-          <section class="body-grid">
-            <button class="body-card">
-              <span>H</span>
-              <strong>Hands</strong>
-              <p>Desk break</p>
-            </button>
-            <button class="body-card featured">
-              <span>N</span>
-              <strong>Neck</strong>
-              <p>For sitting</p>
-            </button>
-            <button class="body-card">
-              <span>HD</span>
-              <strong>Head</strong>
-              <p>Ease stress</p>
-            </button>
-            <button class="body-card">
-              <span>L</span>
-              <strong>Legs</strong>
-              <p>After walking</p>
-            </button>
-            <button class="body-card">
+        </section>
+
+        <section class="screen" id="checkin-history">
+          <header class="history-navbar">
+            <div class="history-title-row">
+              <button class="history-back" aria-label="Back" data-back>‹</button>
+              <h1>Check-In History</h1>
+            </div>
+            <div class="history-weekdays" aria-label="Weekdays">
+              <span>M</span>
+              <span>T</span>
+              <span>W</span>
+              <span>T</span>
               <span>F</span>
-              <strong>Feet</strong>
-              <p>Before sleep</p>
-            </button>
-            <button class="body-card">
-              <span>A</span>
-              <strong>Abdomen</strong>
-              <p>Gentle care</p>
-            </button>
-          </section>
-
-          <article class="course-row">
-            <div>
-              <span>Recommended</span>
-              <strong>Neck Relief</strong>
-              <p>8 min · 6 steps</p>
-            </div>
-            <button>Start</button>
-          </article>
-        </section>
-
-        <section class="screen" id="checkin">
-          <header class="ios-nav">
-            <div>
-              <span class="nav-caption">Body feedback</span>
-              <h1>Check-in</h1>
+              <span>S</span>
+              <span>S</span>
             </div>
           </header>
 
-          <section class="week-strip">
-            <span>M</span>
-            <span>T</span>
-            <span class="done">W</span>
-            <span class="done">T</span>
-            <span class="current">F</span>
-            <span>S</span>
-            <span>S</span>
-          </section>
+          <div class="history-scroll">
+            <article class="history-month">
+              <div class="history-month-header">
+                <h2>April 2026</h2>
+                <p>20 check-ins</p>
+              </div>
+              <div class="history-calendar" aria-label="April 2026 check-ins">
+                <span class="empty"></span>
+                <span class="empty"></span>
+                <span class="checked">1</span>
+                <span class="checked">2</span>
+                <span>3</span>
+                <span class="checked">4</span>
+                <span>5</span>
+                <span class="checked">6</span>
+                <span class="checked">7</span>
+                <span class="checked">8</span>
+                <span>9</span>
+                <span class="checked">10</span>
+                <span>11</span>
+                <span class="checked">12</span>
+                <span class="checked">13</span>
+                <span>14</span>
+                <span class="checked">15</span>
+                <span>16</span>
+                <span>17</span>
+                <span class="checked">18</span>
+                <span>19</span>
+                <span>20</span>
+                <span class="checked">21</span>
+                <span class="checked">22</span>
+                <span>23</span>
+                <span class="checked">24</span>
+                <span class="checked">25</span>
+                <span class="checked">26</span>
+                <span class="checked">27</span>
+                <span class="checked">28</span>
+                <span class="checked">29</span>
+                <span class="checked">30</span>
+                <span class="empty"></span>
+                <span class="empty"></span>
+                <span class="empty"></span>
+              </div>
+            </article>
 
-          <article class="rating-card">
-            <span>Before practice</span>
-            <h2>Neck tension?</h2>
-            <div class="score-row">
-              <button>1</button>
-              <button>2</button>
-              <button class="selected">3</button>
-              <button>4</button>
-              <button>5</button>
+            <article class="history-month">
+              <div class="history-month-header">
+                <h2>May 2026</h2>
+                <p>21 check-ins</p>
+              </div>
+              <div class="history-calendar" aria-label="May 2026 check-ins">
+                <span class="empty"></span>
+                <span class="empty"></span>
+                <span class="empty"></span>
+                <span class="empty"></span>
+                <span class="checked">1</span>
+                <span class="checked">2</span>
+                <span>3</span>
+                <span class="checked">4</span>
+                <span>5</span>
+                <span class="checked">6</span>
+                <span class="checked">7</span>
+                <span class="checked">8</span>
+                <span>9</span>
+                <span class="checked">10</span>
+                <span>11</span>
+                <span class="checked">12</span>
+                <span class="checked">13</span>
+                <span>14</span>
+                <span class="checked">15</span>
+                <span>16</span>
+                <span>17</span>
+                <span class="checked">18</span>
+                <span>19</span>
+                <span>20</span>
+                <span class="checked">21</span>
+                <span class="checked">22</span>
+                <span>23</span>
+                <span class="checked">24</span>
+                <span class="checked">25</span>
+                <span class="checked">26</span>
+                <span class="checked">27</span>
+                <span class="checked">28</span>
+                <span class="checked">29</span>
+                <span class="checked">30</span>
+                <span class="checked">31</span>
+              </div>
+            </article>
+
+            <article class="history-month">
+              <div class="history-month-header">
+                <h2>June 2026</h2>
+                <p data-history-current-copy>6 check-ins</p>
+              </div>
+              <div class="history-calendar" aria-label="June 2026 check-ins">
+                <span class="checked">1</span>
+                <span class="checked">2</span>
+                <span>3</span>
+                <span class="checked">4</span>
+                <span>5</span>
+                <span class="checked">6</span>
+                <span class="checked">7</span>
+                <span class="checked">8</span>
+                <span>9</span>
+                <span class="soft" data-history-today>10</span>
+                <span>11</span>
+                <span>12</span>
+                <span>13</span>
+                <span>14</span>
+                <span>15</span>
+                <span>16</span>
+                <span>17</span>
+                <span>18</span>
+                <span>19</span>
+                <span>20</span>
+                <span>21</span>
+                <span>22</span>
+                <span>23</span>
+                <span>24</span>
+                <span>25</span>
+                <span>26</span>
+                <span>27</span>
+                <span>28</span>
+                <span>29</span>
+                <span>30</span>
+                <span class="empty"></span>
+                <span class="empty"></span>
+                <span class="empty"></span>
+                <span class="empty"></span>
+                <span class="empty"></span>
+              </div>
+            </article>
+
+            <div class="history-total">
+              <strong>188</strong>
+              <span>total check-ins</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" id="milestone-detail">
+          <header class="ios-nav plan-nav">
+            <button class="top-action" data-back>Back</button>
+            <div>
+              <span class="nav-caption">Wellness Growth</span>
+              <h1>Milestones</h1>
+            </div>
+            <span></span>
+          </header>
+
+          <article class="milestone-overview">
+            <span data-milestone-overview-kicker>Current stage</span>
+            <h2 data-milestone-overview-title>Start your sapling</h2>
+            <p data-milestone-overview-copy>Every check-in helps your wellness tree grow. Future shapes stay hidden until you unlock them.</p>
+          </article>
+
+          <div class="milestone-list" data-milestone-list>
+            <article class="milestone-row locked">
+              <div class="milestone-tree-preview">?</div>
+              <div>
+                <span>First Day</span>
+                <h2>Wellness Sapling</h2>
+                <p>Complete 1 check-in to unlock.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="screen" id="report-upload">
+          <header class="ios-nav">
+            <div>
+              <span class="nav-caption">Baseline Data</span>
+              <h1>Upload Report</h1>
+            </div>
+            <button class="top-action" data-back>Back</button>
+          </header>
+
+          <article class="upload-card">
+            <span>🩸 Improve Circulation</span>
+            <h2>Upload a pre-care health report screenshot</h2>
+            <p>AI will prioritize ALT / AST and other transaminase values for future trend comparison.</p>
+            <button class="photo-placeholder" data-photo-permission>
+              <strong>+</strong>
+              <span>Choose one photo from Library</span>
+            </button>
+            <div class="selected-photo" data-selected-photo>
+              <span>Selected</span>
+              <strong>health-report.jpg</strong>
+              <small>Single photo · ready to upload</small>
             </div>
           </article>
 
-          <section class="feedback-grid">
-            <button class="feedback-chip active">Stiff neck</button>
-            <button class="feedback-chip">Poor sleep</button>
-            <button class="feedback-chip">Low energy</button>
-            <button class="feedback-chip">Stress</button>
-          </section>
+          <button class="ios-primary bottom-action" data-upload-report>Upload and analyze</button>
 
-          <section class="habit-cards">
-            <button class="habit-card active">
-              <strong>Massage</strong>
-              <span>8 min</span>
+          <section class="ios-permission" data-permission-modal>
+            <article>
+              <h2>“Meridian Care” Would Like to Access Your Photos</h2>
+              <p>Used to select a health report screenshot so AI can create your pre-care baseline.</p>
+              <button data-target="photo-picker">Allow Full Access</button>
+              <button data-permission-close>Don’t Allow</button>
+            </article>
+          </section>
+        </section>
+
+        <section class="screen" id="photo-picker">
+          <header class="ios-nav">
+            <div>
+              <span class="nav-caption">Photos</span>
+              <h1>Choose Photo</h1>
+            </div>
+            <button class="top-action" data-back>Cancel</button>
+          </header>
+
+          <section class="photo-grid">
+            <button data-photo-select class="photo-tile report-photo selected">
+              <span>Report</span>
             </button>
-            <button class="habit-card">
-              <strong>Meditate</strong>
-              <span>5 min</span>
+            <button data-photo-select class="photo-tile tea-photo">
+              <span>Lab</span>
             </button>
-            <button class="habit-card">
-              <strong>Breathe</strong>
-              <span>3 min</span>
+            <button data-photo-select class="photo-tile body-photo">
+              <span>Record</span>
+            </button>
+            <button data-photo-select class="photo-tile blank-photo">
+              <span>Screenshot</span>
             </button>
           </section>
-
-          <button class="ios-primary fixed-action">Submit to AI</button>
+          <button class="ios-primary bottom-action" data-confirm-photo data-target="report-upload">Use This Photo</button>
         </section>
 
         <section class="screen" id="report">
           <header class="ios-nav">
             <div>
-              <span class="nav-caption">AI insight</span>
-              <h1>Report</h1>
+              <span class="nav-caption">Content & Consultation</span>
+              <h1>Wellness</h1>
             </div>
           </header>
 
-          <article class="report-card">
-            <span>14-day summary</span>
-            <h2>11 sessions done</h2>
-            <p>96 min · 5-day streak</p>
+          <article class="locked-card unsubscribed-only">
+            <span>No content yet</span>
+            <h2>Wellness content is locked</h2>
+            <p>Subscribe to unlock massage education and AI suggestions.</p>
+            <button class="ios-primary" data-target="subscribe">Subscribe now</button>
           </article>
 
-          <section class="content-block">
+          <article class="wellness-card subscribed-only">
+            <span>Today’s Pick</span>
+            <h2>Release Tension Gently</h2>
+            <p>Start with light pressure around the neck, shoulders, and feet.</p>
+          </article>
+
+          <section class="content-block subscribed-only">
             <div class="block-title">
-              <h2>Body trend</h2>
-              <span>Neck</span>
+              <h2>Wellness Content</h2>
+              <span>Featured</span>
             </div>
-            <div class="bar-chart">
-              <i style="height: 72%"></i>
-              <i style="height: 60%"></i>
-              <i style="height: 50%"></i>
-              <i style="height: 42%"></i>
-              <i style="height: 35%"></i>
-            </div>
-            <p class="report-note">AI found lower neck tension and steadier sleep feedback.</p>
+            <button class="session-row">
+              <span class="session-icon">N</span>
+              <div>
+                <strong>Neck tension after long desk hours</strong>
+                <p>Simple pressure points to relax tight areas</p>
+              </div>
+            </button>
+            <button class="session-row">
+              <span class="session-icon">M</span>
+              <div>
+                <strong>Shoulder-neck relief for desk workers</strong>
+                <p>3 self-massage points after work</p>
+              </div>
+            </button>
           </section>
 
-          <article class="suggestion-card">
-            <span>Next plan</span>
-            <strong>Keep neck care. Add bedtime foot massage.</strong>
-            <button>Build Plan</button>
-          </article>
-        </section>
-
-        <section class="screen" id="me">
-          <header class="ios-nav">
-            <div>
-              <span class="nav-caption">Account</span>
-              <h1>Me</h1>
-            </div>
-          </header>
-
-          <article class="member-card">
-            <span>Annual Member</span>
-            <h2>AI care unlocked</h2>
-            <p>Reports, plans, and massage library</p>
-          </article>
-
-          <section class="settings-list">
-            <button><span>Goals</span><strong>Neck, sleep</strong></button>
-            <button><span>Saved</span><strong>12</strong></button>
-            <button><span>Reminder</span><strong>22:00</strong></button>
-            <button><span>Reports</span><strong>3</strong></button>
+          <section class="consult-card subscribed-only">
+            <span>AI Consultation</span>
+            <strong>Describe how you feel today</strong>
+            <p>Share sleep, stress, soreness, or energy level, and AI will suggest a massage routine.</p>
+            <button>Start consultation</button>
           </section>
         </section>
 
-        <nav class="ios-tabbar" aria-label="主导航">
-          <button class="active" data-target="journey">
-            <span class="tab-icon"></span>
-            Today
-          </button>
-          <button data-target="massage">
-            <span class="tab-icon"></span>
-            Care
-          </button>
-          <button data-target="checkin">
-            <span class="tab-icon"></span>
-            Check
-          </button>
-          <button data-target="report">
-            <span class="tab-icon"></span>
-            Report
-          </button>
-          <button data-target="me">
-            <span class="tab-icon"></span>
-            Me
-          </button>
-        </nav>
+        <section class="profile-modal" aria-label="Profile modal">
+          <button class="profile-scrim" aria-label="Close profile" data-profile-close></button>
+          <article class="profile-sheet">
+            <header class="profile-head">
+              <div class="profile-avatar">M</div>
+              <div>
+                <span>Profile</span>
+                <h2>Meridian Care User</h2>
+              </div>
+              <button class="profile-close" aria-label="Close" data-profile-close>×</button>
+            </header>
+
+            <article class="subscription-card" data-target="subscribe" role="button" tabindex="0" aria-label="View subscription">
+              <span>Subscription</span>
+              <strong class="subscribed-only">Annual member · trial active</strong>
+              <strong class="unsubscribed-only">Not subscribed</strong>
+              <p class="subscribed-only">AI massage plans, guided routines, and weekly summaries are unlocked.</p>
+              <p class="unsubscribed-only">Subscribe to generate your personal massage plan.</p>
+              <em class="subscribed-only">Renew or manage</em>
+              <em class="unsubscribed-only">View subscription</em>
+            </article>
+
+            <section class="profile-list">
+              <div class="language-setting">
+                <div>
+                  <span>Language</span>
+                  <strong data-language-label>English</strong>
+                </div>
+                <div class="language-toggle" aria-label="Language">
+                  <button class="active" data-language="en">EN</button>
+                  <button data-language="zh">中文</button>
+                </div>
+              </div>
+              <button>
+                <span>About Us</span>
+                <strong>V1.0.0</strong>
+              </button>
+              <button data-app-share>
+                <span>Share App</span>
+                <strong>Invite friends</strong>
+              </button>
+              <button class="logout-button" data-mode="unsubscribed" data-target="login">
+                <span>Log Out</span>
+                <strong>Back to login</strong>
+              </button>
+            </section>
+            <div class="settings-legal-links">
+              <div>
+                <button>Restore Purchase</button>
+                <span>·</span>
+                <button class="delete-account-button" data-delete-account-open>Delete Account</button>
+              </div>
+              <div>
+                <button>Terms</button>
+                <span>·</span>
+                <button>Privacy Policy</button>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="share-modal" aria-label="Share check-in invite">
+          <button class="share-scrim" aria-label="Close share" data-share-close></button>
+          <article class="share-sheet">
+            <button class="share-close" aria-label="Close" data-share-close>×</button>
+            <span data-share-kicker>Share Check-in</span>
+            <h2 data-share-title>Invite a friend to check in with you</h2>
+            <p data-share-copy>You have completed 3 check-ins this week and unlocked your first wellness fruit.</p>
+            <div class="share-stats">
+              <strong><b data-share-days>3</b><small>days this week</small></strong>
+              <strong><b data-share-reward-count>1</b><small data-share-reward-label>fruit unlocked</small></strong>
+            </div>
+            <div class="share-destinations">
+              <button data-social-share="instagram"><span>IG</span><strong>Instagram</strong></button>
+              <button data-social-share="tiktok"><span>TT</span><strong>TikTok</strong></button>
+              <button data-open-system-share><span>•••</span><strong>More</strong></button>
+            </div>
+            <em data-share-status>Share your steady progress and invite friends to join Meridian Care.</em>
+          </article>
+        </section>
+
+        <section class="system-share-modal" aria-label="iPhone share sheet">
+          <button class="system-share-scrim" aria-label="Close share sheet" data-system-share-close></button>
+          <article class="system-share-sheet">
+            <span data-system-share-title>Share Meridian Care</span>
+            <div class="share-preview">
+              <strong data-system-share-preview>Meridian Care</strong>
+              <p data-system-share-copy>Build a gentle daily meridian massage habit.</p>
+            </div>
+            <div class="system-share-grid">
+              <button><i>💬</i><span>Messages</span></button>
+              <button><i>📩</i><span>Mail</span></button>
+              <button><i>🔗</i><span>Copy Link</span></button>
+              <button><i>⋯</i><span>More</span></button>
+            </div>
+            <button class="system-share-cancel" data-system-share-close>Cancel</button>
+          </article>
+        </section>
+
+        <section class="milestone-celebration" aria-live="polite" aria-label="Wellness milestone animation">
+          <article>
+            <div class="celebration-orbit" aria-hidden="true">
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+            <div class="celebration-tree" data-celebration-visual>🌱</div>
+            <span data-celebration-kicker>Wellness Tree</span>
+            <h2 data-celebration-title>Seed Planted</h2>
+            <p data-celebration-copy>Every wellness session helps your tree grow.</p>
+          </article>
+        </section>
+
+        <section class="milestone-modal" aria-label="Wellness milestone">
+          <button class="milestone-scrim" aria-label="Close milestone" data-milestone-close></button>
+          <article class="milestone-sheet">
+            <div class="modal-tree" data-milestone-visual>🌱</div>
+            <span data-milestone-kicker>Wellness Achievement</span>
+            <h2 data-milestone-title>First fruit unlocked</h2>
+            <p data-milestone-copy>You checked in 3 days this week. Your Better Sleep routine is becoming a real habit.</p>
+            <button data-milestone-close>Keep growing</button>
+          </article>
+        </section>
+
+        <section class="journey-complete-modal" aria-label="Wellness Journey complete">
+          <button class="journey-complete-scrim" aria-label="Close journey complete" data-journey-complete-close></button>
+          <article class="journey-complete-sheet">
+            <div class="life-tree-glow" aria-hidden="true">
+              <span>🌳✨</span>
+            </div>
+            <span data-journey-complete-kicker>Wellness Achievement</span>
+            <h2 data-journey-complete-title>Congratulations!</h2>
+            <p data-journey-complete-copy>You completed your first Wellness Journey and grew your Wellness Tree into a Tree of Life.</p>
+            <div class="journey-complete-stats">
+              <strong><b>🌳</b><small>Tree of Life</small></strong>
+              <strong><b>100</b><small>Days Completed</small></strong>
+              <strong><b>126</b><small>Wellness Sessions</small></strong>
+              <strong><b>612</b><small>Minutes Practiced</small></strong>
+            </div>
+            <div class="journey-badge">
+              <b>🏅 Tree of Life</b>
+              <small>Awarded for completing a 100-day Wellness Journey.</small>
+            </div>
+            <button data-new-journey>🌱 Plant a New Tree</button>
+          </article>
+        </section>
+
+        <section class="delete-account-modal" aria-label="Delete account confirmation">
+          <button class="delete-account-scrim" aria-label="Cancel account deletion" data-delete-account-close></button>
+          <article class="delete-account-sheet">
+            <span>Account Deletion</span>
+            <h2>Delete your account?</h2>
+            <p>This will permanently delete your account, personal plan, check-in history, and saved preferences. Active subscriptions should still be managed through the App Store.</p>
+            <div class="delete-account-actions">
+              <button data-delete-account-close>Cancel</button>
+              <button class="danger" data-mode="unsubscribed" data-target="login" data-delete-account-confirm>Delete account</button>
+            </div>
+          </article>
+        </section>
       </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="wellness-data.js?v=20260630-acupoints"></script>
+    <script src="script.js?v=20260630-acupoints"></script>
   </body>
 </html>
