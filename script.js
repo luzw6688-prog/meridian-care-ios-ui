@@ -880,7 +880,7 @@ const enToZh = {
   "AI wellness scan": "AI 养护扫描",
   "Tongue Scan": "舌苔扫描",
   "Set by Questions": "通过问答设置",
-  "Align your tongue inside the guide. AI will scan it and build a simple massage plan.": "将舌头对准引导区域，AI 会完成扫描并生成简单按摩计划。",
+  "Align your tongue inside the guide. AI will scan it and create the most suitable massage plan.": "将舌头对准引导区域，AI 会完成扫描并创建最合适的按摩计划。",
   "Camera access is required before taking a photo.": "需要先授权手机相机权限后才能进行拍照。",
   "Allow Camera Access": "授权手机相机权限",
   "Camera ready": "相机已就绪",
