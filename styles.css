@@ -386,6 +386,16 @@ button.disabled,
   text-align: center;
 }
 
+.tongue-disclaimer {
+  max-width: 340px;
+  margin: 8px auto 0;
+  color: rgba(111, 87, 69, 0.72);
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+}
+
 .tongue-scan-layer {
   position: absolute;
   inset: 0;
