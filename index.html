@@ -58,7 +58,6 @@
             <span></span>
           </button>
           <strong class="tongue-shutter-label" data-tongue-capture-label>Capture</strong>
-          <p class="tongue-disclaimer">Tongue analysis is based on traditional wellness principles and is intended for self-care guidance only. It does not diagnose, treat, or replace medical advice.</p>
 
           <section class="ios-permission tongue-permission-modal" data-tongue-permission-modal>
             <article>
@@ -77,56 +76,73 @@
               <span class="nav-caption">AI Scan</span>
               <h1>Your wellness plan is ready</h1>
             </div>
+            <button class="report-info-button" type="button" aria-label="About tongue analysis" aria-expanded="false" data-tongue-disclaimer-toggle>i</button>
           </header>
+
+          <aside class="tongue-disclaimer-popover" role="note" data-tongue-disclaimer-popover>
+            <strong>About this scan</strong>
+            <p>Tongue analysis is based on traditional wellness principles and is intended for self-care guidance only. It does not diagnose, treat, or replace medical advice.</p>
+          </aside>
 
           <article class="tongue-report-hero">
             <span>Scan result</span>
-            <h2>Low energy signals detected</h2>
-            <p>Your tongue appears slightly pale, which may suggest tiredness and slower daily recovery. AI recommends a gentle massage plan to support relaxation and circulation.</p>
+            <h2>Tongue signals found</h2>
+            <ul class="tongue-signal-list">
+              <li>Red tongue tip</li>
+              <li>Thick coating</li>
+              <li>Clear teeth marks</li>
+            </ul>
+            <p>These signals may suggest a sense of body heaviness and inner restlessness. AI recommends an energy reset acupoint massage plan to support daily relaxation and circulation.</p>
           </article>
 
-          <section class="tongue-report-list">
-            <article>
-              <b>Head and neck</b>
-              <p>Yintang</p>
-            </article>
-            <article>
-              <b>Hands</b>
-              <p>Hegu</p>
-            </article>
-            <article>
-              <b>Lower legs</b>
-              <p>Zusanli</p>
-            </article>
+          <section class="tongue-report-list" aria-label="Locked massage point preview">
+            <div class="tongue-report-list-head">
+              <span>Massage point plan</span>
+              <strong>Subscribe to reveal exact points</strong>
+            </div>
+            <div class="locked-point-preview" aria-hidden="true">
+              <article>
+                <b>Head</b>
+                <p>Baihui</p>
+              </article>
+              <article>
+                <b>Hands</b>
+                <p>Hegu</p>
+              </article>
+              <article>
+                <b>Lower legs</b>
+                <p>Zusanli</p>
+              </article>
+            </div>
           </section>
 
+          <p class="tongue-report-subscribe-note">Subscribe now for daily check-ins and exact massage points.</p>
           <button class="ios-primary bottom-action" data-tongue-report-cta>Start Now</button>
         </section>
 
         <section class="screen" id="subscribe">
-          <header class="compact-nav">
-            <button class="text-button" data-close-paywall>Close</button>
+          <header class="compact-nav paywall-close-row">
+            <button class="text-button" data-close-paywall data-mode="unsubscribed" data-target="today">Close</button>
           </header>
 
           <article class="paywall-hero">
-            <span>Membership</span>
+            <span>Meridian Care Membership</span>
             <h1>Get your AI massage plan</h1>
-            <p>Subscribe to generate your plan and unlock daily guided massage.</p>
           </article>
 
-          <section class="benefit-list">
+          <section class="benefit-list paywall-benefits">
             <article class="benefit-combined">
               <div>
-                <strong><i class="benefit-icon plan"></i>Personalized massage plan</strong>
-                <p>Build a daily routine around your goal, time, and body focus.</p>
+                <strong><i class="benefit-dot"></i>Traditional Chinese Medicine meridian theory acupressure</strong>
               </div>
               <div>
-                <strong><i class="benefit-icon guide"></i>Guided meridian massage</strong>
-                <p>Follow guided demos designed for self-care at home.</p>
+                <strong><i class="benefit-dot"></i>Personalized massage plans</strong>
               </div>
               <div>
-                <strong><i class="benefit-icon progress"></i>Progress insights</strong>
-                <p>Track your routine, streak, and weekly progress in one place.</p>
+                <strong><i class="benefit-dot"></i>Daily guided massages</strong>
+              </div>
+              <div>
+                <strong><i class="benefit-dot"></i>Progress insights</strong>
               </div>
             </article>
           </section>
@@ -292,12 +308,29 @@
         </section>
 
         <section class="screen" id="today">
-          <article class="locked-card unsubscribed-only">
-            <span>Not subscribed</span>
-            <h2>Subscribe to start daily check-ins</h2>
-            <p>Your plan is ready. Subscribe to unlock guided massage and begin today’s check-in.</p>
-            <button class="ios-primary" data-target="subscribe">Subscribe now</button>
-            <button class="ghost-button" data-target="tongue-care">Retune plan</button>
+          <article class="home-hero not-subscribed-home unsubscribed-only">
+            <div class="home-welcome">
+              <button class="profile-chip" aria-label="Profile" data-profile-open>
+                <span>☺</span>
+                <strong><em>Welcome</em>Kevin</strong>
+                <i>⌄</i>
+              </button>
+            </div>
+
+            <div class="home-plan-intro">
+              <span>Your Wellness Plan</span>
+              <h1 data-home-plan-title>Better Sleep</h1>
+            </div>
+
+            <div class="home-illustration" aria-label="Better Sleep illustration">
+              <img class="wellness-figure" src="assets/better-sleep-hero.svg" alt="Better Sleep wellness illustration">
+            </div>
+
+            <div class="unsubscribed-action-card">
+              <p>Your wellness plan is ready. Subscribe to unlock daily guided massages.</p>
+              <button class="ghost-button" data-target="tongue-care">Remake Plan</button>
+              <button class="ios-primary" data-target="subscribe">Subscribe</button>
+            </div>
           </article>
 
           <article class="home-hero subscribed-only">

@@ -28,6 +28,8 @@ const tongueCaptureLabel = document.querySelector("[data-tongue-capture-label]")
 const tongueCameraCard = document.querySelector(".tongue-camera-card");
 const tongueStatusText = document.querySelector("[data-tongue-status]");
 const tongueReportCta = document.querySelector("[data-tongue-report-cta]");
+const tongueDisclaimerToggle = document.querySelector("[data-tongue-disclaimer-toggle]");
+const tongueDisclaimerPopover = document.querySelector("[data-tongue-disclaimer-popover]");
 const notificationOpenButton = document.querySelector("[data-open-notification]");
 const notificationAllowButton = document.querySelector("[data-notification-allow]");
 const notificationLaterButton = document.querySelector("[data-notification-later]");
@@ -382,6 +384,8 @@ let aiGeneratingTimer = null;
 let tongueScanTimer = null;
 let tonguePermissionAnswered = false;
 let tonguePhotoAuthorized = false;
+const TONGUE_SCAN_PURPOSE = "fatigue";
+const TONGUE_SCAN_STATUS_INDEX = 1;
 let todayCheckinCompleted = false;
 let lastSharedMilestoneDays = 0;
 let lastShareType = "checkin";
@@ -616,6 +620,10 @@ const enToZh = {
   "Close": "关闭",
   "Membership": "会员方案",
   "Subscribe to generate your plan and unlock daily guided massage.": "开通后生成专属计划，并解锁每日引导按摩。",
+  "Meridian Care Membership": "经络养护会员",
+  "Traditional Chinese Medicine meridian theory acupressure": "传统经络理论穴位按摩",
+  "Personalized massage plans": "个性化按摩计划",
+  "Daily guided massages": "每日引导按摩",
   "Guided meridian massage": "经络按摩指导",
   "Follow GIF demos designed for self-care at home.": "跟随动作演示，在家完成轻量自助护理。",
   "Monthly": "月度会员",
@@ -892,15 +900,22 @@ const enToZh = {
   "Camera access is used to scan your tongue photo and create your wellness massage plan.": "相机权限用于拍摄舌苔照片，并生成你的养生按摩计划。",
   "AI Scan": "AI 扫描",
   "Your wellness plan is ready": "你的养生计划已生成",
+  "About this scan": "关于本次扫描",
   "Scan result": "扫描结果",
-  "Low energy signals detected": "发现精力偏弱信号",
-  "Your tongue appears slightly pale, which may suggest tiredness and slower daily recovery. AI recommends a gentle massage plan to support relaxation and circulation.": "舌象呈现轻微偏淡，可能与疲劳感和日常恢复较慢有关。AI 建议进行温和的穴位按摩，帮助放松并支持气血循环。",
-  "Head and neck": "头颈",
-  "Yintang": "印堂",
+  "Tongue signals found": "发现舌象信号",
+  "Red tongue tip": "舌尖偏红",
+  "Thick coating": "舌苔厚腻",
+  "Clear teeth marks": "齿痕明显",
+  "These signals may suggest a sense of body heaviness and inner restlessness. AI recommends an energy reset acupoint massage plan to support daily relaxation and circulation.": "这些舌象信号可能与身体沉重感、内在烦闷感有关。AI 建议进行一套精力重置穴位按摩计划，帮助日常放松并支持循环感。",
+  "Massage point plan": "穴位按摩计划",
+  "Subscribe to reveal exact points": "订阅后查看具体穴位",
+  "Head": "头部",
+  "Baihui": "百会",
   "Hands": "手部",
   "Hegu": "合谷",
   "Lower legs": "小腿",
   "Zusanli": "足三里",
+  "Subscribe now for daily check-ins and exact massage points.": "立即订阅，每日打卡，查看具体按摩穴位。",
   "Start Now": "立即开始",
   "Get your AI massage plan": "生成你的 AI 按摩计划",
   "Personalized massage plan": "个性化按摩计划",
@@ -936,7 +951,10 @@ const enToZh = {
   "You can browse first. Guided routines, AI plans, and weekly summaries unlock after subscription.": "你可以先浏览界面。开通后解锁动作引导、AI 计划和本周小结。",
   "Subscribe to start daily check-ins": "订阅 App，立即开始每日打卡",
   "Your plan is ready. Subscribe to unlock guided massage and begin today’s check-in.": "你的计划已准备好。订阅后即可解锁按摩引导，并开始今日打卡。",
+  "Your wellness plan is ready. Subscribe to unlock daily guided massages.": "你的养护计划已准备好。订阅后即可解锁每日引导按摩。",
   "Subscribe now": "立即订阅",
+  "Remake Plan": "重新制定计划",
+  "Subscribe": "订阅",
   "Retune plan": "重新制定计划",
   "Complete today’s 10-minute guided massage.": "完成今天 10 分钟引导按摩。",
   "Start routine": "开始打卡",
@@ -1074,6 +1092,30 @@ function refreshSelectedFocus() {
 
 function getSelectedPurpose() {
   return document.querySelector(".feedback-chip.active")?.dataset.purpose || "default";
+}
+
+function setPlanFromTongueScan() {
+  const targetButton = document.querySelector(`.feedback-chip[data-purpose="${TONGUE_SCAN_PURPOSE}"]`);
+  if (targetButton) {
+    document.querySelectorAll(".feedback-chip").forEach((button) => {
+      button.classList.toggle("active", button === targetButton);
+    });
+  }
+
+  const [title, copy, massage] = purposeFocus[TONGUE_SCAN_PURPOSE] || purposeFocus.default;
+  if (focusTitle) focusTitle.textContent = title;
+  if (focusCopy) focusCopy.textContent = copy;
+  if (massageTarget) massageTarget.textContent = massage;
+  renderStatusOptions(TONGUE_SCAN_PURPOSE);
+
+  const statusButtons = Array.from(statusOptions?.querySelectorAll("button") || []);
+  statusButtons.forEach((button, index) => {
+    button.classList.toggle("active", index === TONGUE_SCAN_STATUS_INDEX);
+  });
+
+  todayCheckinCompleted = false;
+  lastSharedMilestoneDays = 0;
+  updateTodayCompletionState();
 }
 
 function getSelectedDurationLabel() {
@@ -1615,8 +1657,20 @@ function captureTonguePhoto() {
   updateTongueCareState("scanning");
   tongueScanTimer = window.setTimeout(() => {
     updateTongueCareState();
+    setPlanFromTongueScan();
     showScreen("tongue-report");
   }, 1800);
+}
+
+function closeTongueDisclaimer() {
+  app.classList.remove("tongue-disclaimer-open");
+  tongueDisclaimerToggle?.setAttribute("aria-expanded", "false");
+}
+
+function toggleTongueDisclaimer() {
+  const willOpen = !app.classList.contains("tongue-disclaimer-open");
+  app.classList.toggle("tongue-disclaimer-open", willOpen);
+  tongueDisclaimerToggle?.setAttribute("aria-expanded", String(willOpen));
 }
 
 function showScreen(target, options = {}) {
@@ -1625,6 +1679,7 @@ function showScreen(target, options = {}) {
   closeProfile();
   closePermission();
   closeShareSurfaces();
+  closeTongueDisclaimer();
   resetRoutine();
   app.classList.remove("tongue-permission-open", "tongue-scanning");
   if (aiGeneratingTimer && target !== "ai-generating") {
@@ -2032,7 +2087,26 @@ tongueCameraCard?.addEventListener("click", (event) => {
   captureTonguePhoto();
 });
 tongueReportCta?.addEventListener("click", () => {
+  setPlanFromTongueScan();
   showScreen(app.classList.contains("is-subscribed") ? "plan-result" : "subscribe");
+});
+tongueDisclaimerToggle?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  toggleTongueDisclaimer();
+});
+tongueDisclaimerPopover?.addEventListener("click", (event) => {
+  event.stopPropagation();
+});
+document.addEventListener("click", (event) => {
+  if (!app.classList.contains("tongue-disclaimer-open")) {
+    return;
+  }
+
+  if (event.target.closest("[data-tongue-disclaimer-toggle], [data-tongue-disclaimer-popover]")) {
+    return;
+  }
+
+  closeTongueDisclaimer();
 });
 
 notificationOpenButton?.addEventListener("click", () => {
